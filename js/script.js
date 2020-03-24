@@ -8,7 +8,7 @@ class Book {
 }
 
 
-// UI class: UI tasks
+// UI class: Выполняет UI задачи
 class UI {
     static displayBooks() {
 
@@ -96,24 +96,23 @@ document.addEventListener("DOMContentLoaded", UI.displayBooks)
 document.querySelector("#book-form").addEventListener("submit", (e) => {
     // Prevent default submit
     e.preventDefault();
-    // Получить values формы
+    // Получить велью формы
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const isbn = document.querySelector("#isbn").value;
-
     // Валидация
     if (title === "" || author === '' || isbn === '') {
-        UI.showAlert('Please fill in all fields', 'danger')
+        UI.showAlert('Необходимо заполнить все поля', 'danger')
     } else {
         // Создать книгу
         const book = new Book(title, author, isbn);
 
-        // добавить книгу в html
+        // Добавить книгу в html
         UI.addBookToList(book);
-        // добавить книгу в Store
+        // Добавить книгу в Store
         Store.addBook(book);
         // Показать сообщение об успешном добавлении
-        UI.showAlert("Book Added", "success");
+        UI.showAlert("Книга добавлена", "success");
         // Очистить инпуты
         UI.clearFields();
     }
@@ -124,8 +123,8 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 document.querySelector("#book-list").addEventListener("click", (e) => {
 
     UI.deleteBook(e.target);
-    // удалить книгу с store
+    // Удалить книгу с store
     Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
     // Показать сообщение об успешном добавлении
-    UI.showAlert("Book Removed", "success");
+    UI.showAlert("Книга удалена", "success");
 })
